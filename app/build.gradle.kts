@@ -61,6 +61,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(Libs.kotlinStdLib)
     implementation(Libs.appCompat)
     implementation(Libs.constraintLayout)
