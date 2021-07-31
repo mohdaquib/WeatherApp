@@ -7,7 +7,7 @@ import com.weatherapp.domain.Success
 import com.weatherapp.domain.settings.*
 import javax.inject.Inject
 
-class SettingsDataStore @Inject constructor(private val sharedPreferences: SharedPreferences) :
+class SettingsDataSource @Inject constructor(private val sharedPreferences: SharedPreferences) :
     SettingsRepository {
 
     private val celsiusKey = "CELSIUS_KEY"
