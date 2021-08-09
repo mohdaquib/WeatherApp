@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.weather.CityWeatherFragment"
+    android:background="#FEFEFE"
+    android:padding="20dp">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="Sydney"
+        android:textSize="30sp"
+        android:textColor="#39323C"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place"
+        tools:text="Thursday 15 April 2018"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/weatherTypeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:layout_marginTop="60dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherTypeImage"
+        tools:text="26"
+        android:textSize="30sp"
+        android:textColor="#39323C"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weatherType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature"
+        tools:text="Partly Cloudy"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textColor="#ED2575"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/weatherType"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="9Km/h"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/windLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/wind"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="79%"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/humidityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Humidity"
+                android:layout_below="@+id/humidity"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/maximumTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="9Km/h"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/maximumTempLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Maximum"
+                android:layout_below="@+id/maximumTemp"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/forecastLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/firstDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Friday"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_add"
+                android:layout_below="@+id/firstDay"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/firstDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/image1"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/secondDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Friday"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_add"
+                android:layout_below="@+id/secondDay"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/secondDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/image2"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/thirdDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Friday"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_add"
+                android:layout_below="@+id/thirdDay"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/thirdDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/image3"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/forthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Friday"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_add"
+                android:layout_below="@+id/forthDay"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/forthDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/image4"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fifthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Friday"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_add"
+                android:layout_below="@+id/fifthDay"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fifthDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Wind"
+                android:layout_below="@+id/image5"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

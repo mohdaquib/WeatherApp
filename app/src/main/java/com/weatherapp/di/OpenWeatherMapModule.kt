@@ -2,14 +2,16 @@ package com.weatherapp.di
 
 import com.weatherapp.BuildConfig
 import com.weatherapp.data.openweathermap.OpenWeatherMapApi
-import com.weatherapp.data.weather.WeatherDataStore
+import com.weatherapp.data.weather.WeatherDataSource
 import com.weatherapp.domain.weather.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 const val OPENWEATHERMAP_URL = BuildConfig.OPENWEATHERMAP_URL
@@ -20,13 +22,23 @@ object OpenWeatherMapModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(OPENWEATHERMAP_URL)
             .addConverterFactory(
-                MoshiConverterFactory.create()
-            )
+                GsonConverterFactory.create()
+            ).client(okHttpClient)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(): OkHttpClient {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        val okHttpClient = OkHttpClient.Builder()
+        okHttpClient.addInterceptor(loggingInterceptor)
+        return okHttpClient.build()
     }
 
     @Singleton
@@ -37,6 +49,6 @@ object OpenWeatherMapModule {
 
     @Provides
     fun provideOpenWeatherMapRemoteDataSource(openWeatherMapApi: OpenWeatherMapApi): WeatherRepository {
-        return WeatherDataStore(openWeatherMapApi)
+        return WeatherDataSource(openWeatherMapApi)
     }
 }

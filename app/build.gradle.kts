@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "com.weatherapp"
-        minSdkVersion(21)
+        minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
@@ -72,6 +72,8 @@ dependencies {
     implementation(Libs.viewModelKtx)
     implementation(Libs.lifecycleExt)
     implementation(Libs.lifecycleKtx)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Libs.lifecycleCompiler)
 
     implementation(Libs.navigationFragmentKtx)
@@ -91,15 +93,15 @@ dependencies {
     kapt(Libs.hiltJetpackCompiler)
 
     implementation(Libs.retrofit)
-    implementation(Libs.retrofitMoshi)
+    implementation(Libs.gson)
+    implementation(Libs.okhttp)
+    implementation(Libs.loggingInterceptor)
 
-    implementation(Libs.moshi)
-    kapt(Libs.moshiCodeGen)
-
-    implementation(Libs.glide)
-    kapt(Libs.glideCompiler)
+    implementation(Libs.coil)
 
     implementation(Libs.circleIndicator)
+
+    implementation(Libs.googleMaps)
 
     testImplementation(Libs.coroutinesCore)
     testImplementation(Libs.mockito)

@@ -6,19 +6,18 @@ import androidx.room.PrimaryKey
 import com.weatherapp.domain.place.Place
 
 @Entity(
-    tableName = "places", indices = [Index(
-        value = ["name", "externalId"],
-        unique = true
-    )]
+    tableName = "places"
 )
 data class PlaceEntity(
-    var name: String,
-    var externalId: String,
-    var country: String
+    val name: String,
+    val state: String,
+    val postalCode: String,
+    val lat: Double,
+    val lng: Double
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }
 
-fun fromPlace(place: Place) = PlaceEntity(place.name, place.id, place.country)
-fun PlaceEntity.toPlace() = Place(this.name, this.externalId, this.country)
+fun fromPlace(place: Place) = PlaceEntity(place.name, place.state, place.postalCode, place.lat, place.lng)
+fun PlaceEntity.toPlace() = Place(this.name, this.state, this.postalCode, this.lat, this.lng)

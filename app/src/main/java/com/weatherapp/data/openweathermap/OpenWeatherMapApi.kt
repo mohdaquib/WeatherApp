@@ -5,5 +5,16 @@ import retrofit2.http.Query
 
 interface OpenWeatherMapApi {
     @GET("weather")
-    suspend fun getWeatherByCityName(@Query("q") cityName: String, @Query("appid") apiKey: String): CityWeatherDto
+    suspend fun getCurrentWeatherByPlaceCoord(
+        @Query("lat") cityLat: Double,
+        @Query("lon") cityLng: Double,
+        @Query("appid") apiKey: String
+    ): CurrentDayWeatherDto
+
+    @GET("forecast")
+    suspend fun getFiveDaysWeatherByPlaceCoord(
+        @Query("lat") cityLat: Double,
+        @Query("lon") cityLng: Double,
+        @Query("appid") apiKey: String
+    ): FiveDaysWeatherDto
 }

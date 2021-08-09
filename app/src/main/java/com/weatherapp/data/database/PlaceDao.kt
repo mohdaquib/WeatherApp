@@ -15,6 +15,9 @@ interface PlaceDao {
     @Query("SELECT * FROM places")
     fun loadAll(): Flow<List<PlaceEntity>>
 
-    @Query("SELECT * FROM places WHERE name = :placeName")
-    fun loadPlace(placeName: String): Flow<PlaceEntity>
+    @Query("SELECT * FROM places WHERE name = :postalCode")
+    fun loadPlace(postalCode: String): Flow<PlaceEntity>
+
+    @Query("DELETE FROM places WHERE postalCode = :postalCode")
+    suspend fun deletePlace(postalCode: String)
 }

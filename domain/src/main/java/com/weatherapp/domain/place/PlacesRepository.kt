@@ -8,5 +8,7 @@ interface PlacesRepository {
 
     fun observePlaces(): Flow<Result<List<Place>>>
 
-    fun loadPlace(placeName: String): Flow<Result<Place>>
+    fun loadPlace(postalCode: String): Flow<Result<Place>>
+
+    suspend fun deletePlace(postalCode: String)
 }

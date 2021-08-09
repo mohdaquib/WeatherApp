@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SearchPlacesUseCase @Inject constructor(private val placesRepository: PlacesRepository) {
 
-    operator fun invoke(placeName: Flow<String>): Flow<Result<Place>> {
-        return placesRepository.searchPlace(placeName)
+    operator fun invoke(postalCode: String): Flow<Result<Place>> {
+        return placesRepository.loadPlace(postalCode)
     }
 }

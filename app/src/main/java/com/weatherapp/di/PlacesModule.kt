@@ -18,7 +18,6 @@ object PlacesModule {
     @Singleton
     @Provides
     fun providePlacesLocalDataSource(
-        @ApplicationContext context: Context,
         placeDao: PlaceDao
-    ): PlacesRepository = PlacesDataSource(context, placeDao)
+    ): PlacesRepository = PlacesDataSource(placeDao)
 }
